@@ -1,0 +1,14 @@
+frr version 8.0
+frr defaults traditional
+hostname {{hostname}}
+log file /var/log/frr/frr.log
+no ipv6 forwarding
+!
+{%- for interface in data.interfaces %}
+interface {{ interface.name }}
+ description {{ interface.description }}
+ ip address {{ interface.ip_address }}
+{% endfor %}
+!
+line vty
+!
